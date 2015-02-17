@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from forms.eventForm import EventoModelForm
+from urbanserver.models import Evento
+from django.core import serializers
+import json
+
 
 # Create your views here.
 
@@ -25,3 +29,9 @@ def createEvent(request):
             form.save()
             return render(request, 'urbanserver/addEvent.html', {'form': form})
     return render(request, 'urbanserver/addEvent.html', {'form': form})
+
+def getEvents(request):
+    d = Evento.objects.all()
+    data = serializers.serialize('json', d)
+    data = json.dumps(json.loads(data), indent=4)
+    return HttpResponse(data, content_type="application/json")
