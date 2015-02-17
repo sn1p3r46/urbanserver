@@ -23,7 +23,6 @@ def createEvent(request):
     else:
         # A POST request: Handle Form Upload
         form = EventoModelForm(request.POST) # Bind data from request.POST into a PostForm
-
         # If data is valid, proceeds to create a new post and redirect the user
         if form.is_valid():
             form.save()
