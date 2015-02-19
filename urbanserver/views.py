@@ -46,6 +46,7 @@ def getNextEvent(request):
     #data = json.dumps(json.loads(data), indent=4)
     return HttpResponse(data, content_type="application/json")
 
+
 def getUsersInLista(request):
     eventID = request.GET.get('event',0)
     E = Evento.objects.get(pk=eventID)
