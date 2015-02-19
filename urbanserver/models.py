@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 class Utente(models.Model):
     user = models.OneToOneField(User, unique=True)
-    fbID = models.CharField(max_length=500,default="FACEBOOK UID")
+    fbID = models.CharField(max_length=500,default="FACEBOOK UID", unique=True)
     linkFoto = models.CharField(max_length=200, default="link foto Utente")
     compleanno = models.DateField(default=None,blank=True)
     presenze = models.IntegerField(default="0")
@@ -22,7 +22,7 @@ class Evento(models.Model):
     ora = models.TimeField("Ora Evento")
     descr = models.TextField(default="Descrizione Evento")
     listaBool = models.IntegerField(default="0")
-    userInLista = models.ManyToManyField(User, blank=True)
+    userInLista = models.ManyToManyField(User, blank=True, serialize=False)
     prevenditeBool = models.IntegerField(default="0")
     prezzoLista = models.IntegerField(default="0")
     prezzoIntero = models.IntegerField(default="0")

@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from forms.eventForm import EventoModelForm
 from urbanserver.models import Evento
 from django.core import serializers
+
 import json
+import datetime
+
 
 
 # Create your views here.
@@ -31,6 +34,25 @@ def createEvent(request):
 
 def getEvents(request):
     d = Evento.objects.all()
-    data = serializers.serialize('json', d)
-    data = json.dumps(json.loads(data), indent=4)
+    data = serializers.serialize('json', d, indent=2)
+    #data = json.dumps(json.loads(data), indent=4)
+    return HttpResponse(data, content_type="application/json")
+
+def getNextEvent(request):
+    day = request.GET.get('day',6)
+    today = datetime.datetime.now().date() + datetime.timedelta(days=1)
+    e = Evento.objects.filter(data__week_day=day, data__gte=today).order_by("data")[:1]
+    data = serializers.serialize('json', e, indent=2)
+    #data = json.dumps(json.loads(data), indent=4)
+    return HttpResponse(data, content_type="application/json")
+
+def getUsersInLista(request):
+    eventID = request.GET.get('event',0)
+    E = Evento.objects.get(pk=eventID)
+    Lista = []
+    for i in E.userInLista.all():
+        c = {'nome': i.first_name, 'cognome':i.last_name}
+        c = (i.first_name, i.last_name)
+        Lista.append(c)
+    data = json.dumps(Lista,indent=2)
     return HttpResponse(data, content_type="application/json")
