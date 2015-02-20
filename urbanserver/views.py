@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from forms.eventForm import EventoModelForm
-from urbanserver.models import Evento
+from urbanserver.models import Evento,Utente
+from django.contrib.auth.models import User
 from django.core import serializers
+from urbanserver.facebook import validateUser
 
 import json
 import datetime
@@ -32,11 +34,13 @@ def createEvent(request):
             return render(request, 'urbanserver/addEvent.html', {'form': form})
     return render(request, 'urbanserver/addEvent.html', {'form': form})
 
+
 def getEvents(request):
     d = Evento.objects.all()
     data = serializers.serialize('json', d, indent=2)
     #data = json.dumps(json.loads(data), indent=4)
     return HttpResponse(data, content_type="application/json")
+
 
 def getNextEvent(request):
     day = request.GET.get('day',6)
@@ -57,3 +61,25 @@ def getUsersInLista(request):
         Lista.append(c)
     data = json.dumps(Lista,indent=2)
     return HttpResponse(data, content_type="application/json")
+
+
+def putUserINLista(request):
+    fbID = request.GET.get('fbID',False)
+    fbToken = request.GET.get('fbToken',False)
+    eventID = request.GET.get('event',False)
+
+    if not (fbID and  fbToken and eventID):
+        return HttpResponse("No GET arguments passed or passed Wrong")
+    try:
+        if validateUser(fbID,fbToken):
+            eventID = request.GET.get('event',0)
+            E = Evento.objects.get(pk=eventID)
+            E.userInLista.add(Utente.objects.get(fbID=fbID).user)
+            return HttpResponse("OK")
+        else:
+            return HttpResponse("ValidateUser Function FAILED")
+    except:
+        return HttpResponse("Something Wrong.. Maybe The user is not in the DB or the event PK is Wrong")
+
+
+        

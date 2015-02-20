@@ -8,5 +8,5 @@ urlpatterns = patterns('',
         url(r'^getevents', views.getEvents, name='Get All Events'),
         url(r'^getnextevent/$', views.getNextEvent, name='Get Next Event'),
         url(r'^getusersinlista/$', views.getUsersInLista, name='Get Users In Lista'),
-
+        url(r'^putuserinlista/$', views.putUserINLista, name='Put User In Lista'),
         )
