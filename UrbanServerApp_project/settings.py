@@ -111,13 +111,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_PATH = os.path.join(BASE_DIR,'static/')
 
-STATIC_ROOT = os.path.join(BASE_DIR,'public/')
+STATIC_PATH = os.path.join(BASE_DIR,'public/')
+
+#STATIC_ROOT = os.path.join(BASE_DIR,'public/')
 
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media/')
 
 
 print __file__
@@ -125,3 +129,4 @@ print os.path.dirname(__file__)
 print os.path.dirname(os.path.dirname(__file__))
 print TEMPLATE_PATH
 print STATIC_PATH
+print MEDIA_ROOT

@@ -38,7 +38,7 @@ class Evento(models.Model):
     linkVideo = models.CharField(max_length=500, default ="LinkVideo")
     linkFBEvent = models.CharField(max_length=500, default ="LinkFBEvent")
     editTime = models.DateTimeField(default = datetime.datetime.now())
-    linkFoto = models.ImageField(upload_to="static/images/", blank=True, null=True)
+    linkFoto = models.ImageField(upload_to="images/", blank=True, null=True)
     ueID = models.IntegerField(default=0)
 
     def save(self):

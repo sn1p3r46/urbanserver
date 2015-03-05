@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
 from urbanserver import views
+from django.conf import settings
 
 urlpatterns = patterns('',
         url(r'^$', views.index, name='index'),
@@ -12,3 +13,8 @@ urlpatterns = patterns('',
         url(r'^getmodificationdate/$', views.getModificationDate, name='get modification date'),
         url(r'^newuser/$', views.newUser, name='new user')
         )
+
+
+urlpatterns += patterns('',
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+)
