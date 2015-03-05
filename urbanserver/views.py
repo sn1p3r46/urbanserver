@@ -116,7 +116,7 @@ def putUserINLista(request):
 
 
 def getModificationDate(request):
-    day = request.GET.get('day',6)
+    """day = request.GET.get('day',6)
     today = datetime.datetime.now().date() + datetime.timedelta(days=1)
     e = Evento.objects.filter(data__week_day=day, data__gte=today).order_by("data")[:1]
     if e.count()==0:
@@ -125,5 +125,18 @@ def getModificationDate(request):
     editDate = e.editTime.isoformat()
     pk = e.pk
     data = [editDate,pk]
+    data = json.dumps(data,indent=2)
+    return HttpResponse(data, content_type="application/json")"""
+
+    day = request.GET.get('day',6)
+    today = datetime.datetime.now().date() + datetime.timedelta(days=1)
+    e = Evento.objects.filter(data__week_day=day, data__gte=today).order_by("data")[:1]
+    if e.count()==0:
+        return HttpResponse("empty")
+    e = e[0]
+    ueID = e.ueID
+    pk = e.pk
+    data={"ueID":ueID,"pk":pk}
+    #data = [ueID,pk]
     data = json.dumps(data,indent=2)
     return HttpResponse(data, content_type="application/json")
