@@ -128,7 +128,6 @@ def getModificationDate(request):
     data = json.dumps(data,indent=2)
     return HttpResponse(data, content_type="application/json")"""
 
-
     day = request.GET.get('day',6)
     today = datetime.datetime.now().date() + datetime.timedelta(days=1)
     e = Evento.objects.filter(data__week_day=day, data__gte=today).order_by("data")[:1]
