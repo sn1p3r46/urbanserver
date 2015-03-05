@@ -9,4 +9,6 @@ urlpatterns = patterns('',
         url(r'^getnextevent/$', views.getNextEvent, name='Get Next Event'),
         url(r'^getusersinlista/$', views.getUsersInLista, name='Get Users In Lista'),
         url(r'^putuserinlista/$', views.putUserINLista, name='Put User In Lista'),
+        url(r'^getmodificationdate/$', views.getModificationDate, name='get modification date'),
+        url(r'^newuser/$', views.newUser, name='new user')
         )
