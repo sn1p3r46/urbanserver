@@ -124,6 +124,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media/')
 
 
+
 print __file__
 print os.path.dirname(__file__)
 print os.path.dirname(os.path.dirname(__file__))
