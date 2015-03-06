@@ -47,7 +47,7 @@ def getEvents(request):
 
 def getNextEvent(request):
     day = request.GET.get('day',6)
-    today = datetime.datetime.now().date() + datetime.timedelta(days=1)
+    today = datetime.datetime.now().date() - datetime.timedelta(days=1)
     e = Evento.objects.filter(data__week_day=day, data__gte=today).order_by("data")[:1]
     data = serializers.serialize('json', e, indent=2)
     #data = json.dumps(json.loads(data), indent=4)
@@ -129,7 +129,7 @@ def getModificationDate(request):
     return HttpResponse(data, content_type="application/json")"""
 
     day = request.GET.get('day',6)
-    today = datetime.datetime.now().date() + datetime.timedelta(days=1)
+    today = datetime.datetime.now().date() - datetime.timedelta(days=1)
     e = Evento.objects.filter(data__week_day=day, data__gte=today).order_by("data")[:1]
     if e.count()==0:
         return HttpResponse("empty")
