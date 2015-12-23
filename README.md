@@ -3,7 +3,7 @@
 # ANDROID APPLICATION REST SERVER
 This is a server example of **Android application**, this application can be used as **prototype** for a Club, it keeps updated the user about future events, artist videos, prices and bus time schedules, using it can allow the final user to access a special list discount.
 
-** [HERE](https://github.com/sfcoding-school/AndroidUrbanApp) you can find the android application repository **  
+**[HERE](https://github.com/sfcoding-school/AndroidUrbanApp) you can find the android application repository**  
 
 
 ## Conceptual Working Demo
