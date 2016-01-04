@@ -39,14 +39,19 @@ Both the cover image and background should change for every event. The backgroun
 </p>
 
 
+
+
 #### Notification:
 
 If the user has expressed its interest on a specific event the application will remind the user the day of the event with a notification.
 
 <p align="center">
-  <img src="images/notification.png" width="500">
+  <img src="images/notification.png" width="320">
+  <img src="https://github.com/sfcoding-school/AndroidUrbanApp/blob/master/images/icon.png" width="200">
 </p>
+
+
 
 #### Notes:
 
-The server can not be launched as it is, in facts it needs some code review because is based on some Facebook API that now are deprecated.
+The server can not be launched as it is, in fact it needs some code review because is based on some Facebook API that now are deprecated.
