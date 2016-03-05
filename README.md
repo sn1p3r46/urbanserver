@@ -5,6 +5,9 @@ This is a server example of **Android application**, this application can be use
 
 **[HERE](https://github.com/sfcoding-school/AndroidUrbanApp) you can find the android application repository**  
 
+#### Author: 
++ [Andrea Galloni](http://www.andreagalloni.eu) (andrea [dot] galloni [at] studenti [dot] unitn [dot] it )
+
 
 ## Conceptual Working Demo
 
